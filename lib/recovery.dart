@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
+
+
+
+
+
+
+
 class RecoveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(4280361249),
         body: Center(
             child: SizedBox(
-                width: 640.0,
+                width: 650.0,
                 height: 480.0,
                 child: Card(
                     color: Color(4294967295),
