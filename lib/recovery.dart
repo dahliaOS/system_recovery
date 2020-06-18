@@ -10,14 +10,16 @@ import 'package:flutter/material.dart';
 class RecoveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(4280361249),
+        backgroundColor: Colors.grey[900],
         body: Center(
             child: SizedBox(
                 width: 650.0,
                 height: 480.0,
-                child: Card(
-                    color: Color(4294967295),
-                    child: Column(
+                child: 
+                
+                ClipRRect(borderRadius: new BorderRadius.all(new Radius.circular(5.0)),child:
+                
+                 /*Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -63,14 +65,77 @@ class RecoveryApp extends StatelessWidget {
                                     color: Color(4294928896),
                                     child: Text('Continue'))),
                               ]))
-                        ])))),
+                        ])*/
+                        
+                        new MyApp(),
+                        
+                        
+                        ))),
         appBar: AppBar(
-            backgroundColor: Color(4280361249),
+            backgroundColor: const Color(0x00ffffff),
             centerTitle: false,
             elevation: 0.0,
             title: Text('Recovery Mode', style: new TextStyle(fontSize:15.0,
             color: const Color(0xFFffffff),
             
             fontFamily: "Roboto"),)));
+  }
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Generated App',
+      theme: new ThemeData(
+        primarySwatch: Colors.deepOrange,
+        
+      ),
+      home: new FirstRoute(),
+    );
+  }
+}
+
+
+
+class FirstRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Route'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          child: Text('Open route'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondRoute()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
   }
 }
