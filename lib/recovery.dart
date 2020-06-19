@@ -1,25 +1,73 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+
+
+
+String getSystem() {
+ProcessResult result = Process.runSync('uname', ['-a']);
+  var verString = result.stdout;
+  return verString;
+  }
 
 
 
 
 
-
-
-
-class RecoveryApp extends StatelessWidget {
+class RecoveryPage extends StatelessWidget {
+  
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[900],
         body: Center(
             child: SizedBox(
-                width: 650.0,
+                width: 625.0,
                 height: 480.0,
                 child: 
                 
                 ClipRRect(borderRadius: new BorderRadius.all(new Radius.circular(5.0)),child:
                 
-                 /*Column(
+                 /**/
+                        
+                        new MyApp(),
+                        
+                        
+                        ))),
+        appBar: AppBar(
+            backgroundColor: const Color(0x00ffffff),
+            centerTitle: false,
+            elevation: 0.0,
+            title: Text(getSystem(), style: new TextStyle(fontSize:15.0,
+            color: const Color(0xFFffffff),
+            
+            fontFamily: "Roboto"),)));
+  }
+}
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Generated App',
+      theme: new ThemeData(
+        primarySwatch: Colors.deepOrange,
+        
+      ),
+      home: new FirstRoute(),
+    );
+  }
+}
+
+
+
+class FirstRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: 
+      
+      
+      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -50,73 +98,35 @@ class RecoveryApp extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                  padding: EdgeInsets.all(23.0),
+                                  padding: EdgeInsets.only(top:20.0,right:20),
                                   child:
                                 OutlineButton(
                                    
-                                    color: Color(4294928896),
+                                    color: Colors.deepOrange[500],
                                     child: Text('Reboot'))),
                                    
                                     Padding(
-                                  padding: EdgeInsets.all(23.0),
+                                  padding: EdgeInsets.only(top:20.0,right:20),
                                   child:
                                 RaisedButton(
-                                   elevation: 1.0,
-                                    color: Color(4294928896),
-                                    child: Text('Continue'))),
-                              ]))
-                        ])*/
-                        
-                        new MyApp(),
-                        
-                        
-                        ))),
-        appBar: AppBar(
-            backgroundColor: const Color(0x00ffffff),
-            centerTitle: false,
-            elevation: 0.0,
-            title: Text('Recovery Mode', style: new TextStyle(fontSize:15.0,
-            color: const Color(0xFFffffff),
-            
-            fontFamily: "Roboto"),)));
-  }
-}
-
-class MyApp extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Generated App',
-      theme: new ThemeData(
-        primarySwatch: Colors.deepOrange,
-        
-      ),
-      home: new FirstRoute(),
-    );
-  }
-}
-
-
-
-class FirstRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('First Route'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Open route'),
-          onPressed: () {
+                                  onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SecondRoute()),
             );
           },
-        ),
-      ),
+                                   elevation: 1.0,
+                                    color: Color(4294928896),
+                                    child: Text('Continue'))),
+                              ]))
+                        ])
+    
+
+
+
+
+
+
     );
   }
 }
