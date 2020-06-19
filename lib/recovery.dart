@@ -20,7 +20,7 @@ class RecoveryPage extends StatelessWidget {
         backgroundColor: Colors.grey[900],
         body: Center(
             child: SizedBox(
-                width: 625.0,
+                width: 620.0,
                 height: 480.0,
                 child: 
                 
@@ -58,6 +58,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
+MaterialButton buildPowerItem(IconData icon, String label, String function) {
+  return MaterialButton(
+    onPressed: (){
+      Process.run('xterm', ['']);
+    },
+    child: Column(
+      //mainAxisSize: MainAxisSize.min,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+          Icon(
+      icon,
+      color: Colors.grey[900],
+      size: 25.0,
+      semanticLabel: 'Power off',
+    ),
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey[900],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 
 class FirstRoute extends StatelessWidget {
@@ -81,7 +112,7 @@ class FirstRoute extends StatelessWidget {
                                   fit: BoxFit.fill)),
                           Center(
                               child: Padding(
-                                  padding: EdgeInsets.all(15.0),
+                                  padding: EdgeInsets.only(left:25.0,right: 25.0, top:0.0, bottom: 35.0),
                                   child: Text(
                                   'Your system is in Recovery Mode. Recovery Mode can be used to repair your system, configure multiple operating systems, enable developer mode and more. Press Reboot to exit Recovery Mode, or press Continue to repair your system and view options.',
                                   style: TextStyle(
@@ -101,7 +132,50 @@ class FirstRoute extends StatelessWidget {
                                   padding: EdgeInsets.only(top:20.0,right:20),
                                   child:
                                 OutlineButton(
-                                   
+                                    onPressed: () {
+                                                          showGeneralDialog(
+                                                    barrierLabel: "Barrier",
+                                                    barrierDismissible: true,
+                                                    barrierColor: Colors.black.withOpacity(0.5),
+                                                    transitionDuration: Duration(milliseconds: 200),
+                                                    context: context,
+                                                    pageBuilder: (_, __, ___) {
+                                                      return Align(
+                                                        alignment: Alignment.bottomCenter,
+                                                        child: Container(
+                                                          height: 90,
+                                                          width: 400,
+                                                          child: SizedBox.expand(child: new Center(child:new Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'null'),),
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'null'),),
+                                                            
+                                  Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'null'),),
+                                                            
+                                                            ],)),),
+                                                          margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    transitionBuilder: (_, anim, __, child) {
+                                                      return SlideTransition(
+                                                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+                                                        child: child,
+                                                      );
+                                                    },
+                                                  );
+          },
                                     color: Colors.deepOrange[500],
                                     child: Text('Reboot'))),
                                    
@@ -116,7 +190,7 @@ class FirstRoute extends StatelessWidget {
             );
           },
                                    elevation: 1.0,
-                                    color: Color(4294928896),
+                                    color: Colors.deepOrange[500],
                                     child: Text('Continue'))),
                               ]))
                         ])
