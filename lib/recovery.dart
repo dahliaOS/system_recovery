@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
 MaterialButton buildPowerItem(IconData icon, String label, String function) {
   return MaterialButton(
     onPressed: (){
-      Process.run('xterm', ['']);
+      Process.run('glade', [''],);
     },
     child: Column(
       //mainAxisSize: MainAxisSize.min,
@@ -119,17 +119,18 @@ class FirstRoute extends StatelessWidget {
                                       color: Color(4278190080),
                                       fontSize: 15.0,
                                       fontStyle: FontStyle.normal))), ),
+                                      Expanded(child: 
                           Center(
                               child: Padding(
                                   padding: EdgeInsets.all(15.0),
-                                  child: Image.asset('lib/recoverylo.png', width: 196.0, height: 196.0))),
+                                  child: Image.asset('lib/recoverylo.png', width: 196.0, height: 196.0))),),
                           Align(
                               child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),
+                                  padding: EdgeInsets.only(top:20.0,right:20,bottom: 15),
                                   child:
                                 OutlineButton(
                                     onPressed: () {
@@ -180,7 +181,7 @@ class FirstRoute extends StatelessWidget {
                                     child: Text('Reboot'))),
                                    
                                     Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),
+                                  padding: EdgeInsets.only(top:20.0,right:20,bottom: 15),
                                   child:
                                 RaisedButton(
                                   onPressed: () {
@@ -209,17 +210,120 @@ class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
+      body: 
+
+
+  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Image.asset(
+                                'lib/logo-color.png',
+                                  width: 165.0,
+                                  height: 32.0,
+                                  fit: BoxFit.fill)),
+                          Center(
+                              child: Padding(
+                                  padding: EdgeInsets.only(left:25.0,right: 25.0, top:0.0, bottom: 35.0),
+                                  child: Text(
+                                  'To begin using dahliaOS, select a user shell below. Some shells are unfinished and may be unstable. If an error occurs, hold down the power button for 5-10 seconds until the device powers off.',
+                                  style: TextStyle(
+                                      color: Color(4278190080),
+                                      fontSize: 15.0,
+                                      fontStyle: FontStyle.normal))), ),
+                                      Expanded(child: 
+                          Center(
+                              child: 
+                              
+                              Container(
+          color: Color(0xffff3d00),
+          margin: EdgeInsets.all(10),
+          child: new SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: new Column(
+              children: [
+
+
+
+
+
+              ])))
+                              
+                              
+                              ),),
+                          Align(
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20,bottom: 15),
+                                  child:
+                                OutlineButton(
+                                    onPressed: () {
+                                                          showGeneralDialog(
+                                                    barrierLabel: "Barrier",
+                                                    barrierDismissible: true,
+                                                    barrierColor: Colors.black.withOpacity(0.5),
+                                                    transitionDuration: Duration(milliseconds: 200),
+                                                    context: context,
+                                                    pageBuilder: (_, __, ___) {
+                                                      return Align(
+                                                        alignment: Alignment.bottomCenter,
+                                                        child: Container(
+                                                          height: 90,
+                                                          width: 400,
+                                                          child: SizedBox.expand(child: new Center(child:new Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: [
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'null'),),
+                                                            
+                                                             Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'null'),),
+                                                            
+                                  Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'null'),),
+                                                            
+                                                            ],)),),
+                                                          margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    transitionBuilder: (_, anim, __, child) {
+                                                      return SlideTransition(
+                                                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+                                                        child: child,
+                                                      );
+                                                    },
+                                                  );
+          },
+                                    color: Colors.deepOrange[500],
+                                    child: Text('Reboot'))),
+                                   
+                                    Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20,bottom: 15),
+                                  child:
+                                RaisedButton(
+                                  onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back!'),
-        ),
-      ),
+                                   elevation: 1.0,
+                                    color: Colors.deepOrange[500],
+                                    child: Text('Back'))),
+                              ]))
+                        ])
+
+
     );
   }
 }
