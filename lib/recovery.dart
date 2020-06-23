@@ -206,6 +206,39 @@ class FirstRoute extends StatelessWidget {
   }
 }
 
+
+MaterialButton shellItem(IconData icon, String shellName, BuildContext context) {
+return new MaterialButton(onPressed: null,child: new Row( 
+
+ crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+
+  Icon(
+      icon,
+      color: Colors.grey[900],
+      size: 25.0,
+      semanticLabel: 'Power off',
+    ),
+        Container(
+          margin: EdgeInsets.all(4),
+          child: Text(
+            shellName,
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey[900],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+                                    
+                                  ],
+
+),);
+
+    }
+
+
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -239,7 +272,7 @@ class SecondRoute extends StatelessWidget {
                               child: 
                               
                               Container(
-          color: Color(0xffff3d00),
+          color: Color(0xffeeeeee),
           margin: EdgeInsets.all(10),
           child: new SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -247,8 +280,10 @@ class SecondRoute extends StatelessWidget {
               children: [
 
 
-
-
+shellItem(Icons.brightness_low, 'Pangolin Desktop', context),
+shellItem(Icons.error_outline, 'Kernel Panic', context),
+shellItem(Icons.sync_problem, 'Recovery Mode', context),
+shellItem(Icons.developer_mode, 'Command Line Interface', context),
 
               ])))
                               
