@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-MaterialButton buildPowerItem(IconData icon, String label, String function) {
+MaterialButton buildPowerItem(IconData icon, String label, String function, String subARG) {
   return MaterialButton(
     onPressed: (){
-      Process.run('glade', [''],);
+      Process.run(function, [subARG],);
     },
     child: Column(
       //mainAxisSize: MainAxisSize.min,
@@ -103,13 +103,33 @@ class FirstRoute extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
-                              padding: EdgeInsets.all(15.0),
+                          Center(child: Padding(
+                              padding: EdgeInsets.all(25.0),
                               child: Image.asset(
-                                'lib/logo-color.png',
-                                  width: 165.0,
-                                  height: 32.0,
-                                  fit: BoxFit.fill)),
+                                'lib/logo-nobg.png',
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.fill)),),
+                         
+Center(
+                              child: Padding(
+                                  padding: EdgeInsets.only(left:25.0,right: 25.0, top:0.0, bottom: 35.0),
+                                  child: 
+                                  
+                                  
+                                  RichText(
+  text: TextSpan(
+    children: <TextSpan>[
+
+      TextSpan(text: 'Welcome!', style: TextStyle(fontFamily: "Roboto Light", fontSize: 30, color: Colors.grey[900])),
+      
+    ],
+  ),
+)
+                                  
+                                  
+                               ), ),
+
                           Center(
                               child: Padding(
                                   padding: EdgeInsets.only(left:25.0,right: 25.0, top:0.0, bottom: 35.0),
@@ -119,11 +139,7 @@ class FirstRoute extends StatelessWidget {
                                       color: Color(4278190080),
                                       fontSize: 15.0,
                                       fontStyle: FontStyle.normal))), ),
-                                      Expanded(child: 
-                          Center(
-                              child: Padding(
-                                  padding: EdgeInsets.all(15.0),
-                                  child: Image.asset('lib/recoverylo.png', width: 196.0, height: 196.0))),),
+                                      Expanded(child:new Container(),),
                           Align(
                               child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -152,13 +168,13 @@ class FirstRoute extends StatelessWidget {
                                                             children: [
                                                             
                                                              Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'null'),),
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'shutdown', '-h'),),
                                                             
                                                              Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'null'),),
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),),
                                                             
                                   Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'null'),),
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'system_recovery'),),
                                                             
                                                             ],)),),
                                                           margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
@@ -315,15 +331,14 @@ shellItem(Icons.developer_mode, 'Command Line Interface', context),
                                                             crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
+                                                           Padding(
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'shutdown', '-h'),),
                                                             
                                                              Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.power_settings_new, 'Power off', 'null'),),
-                                                            
-                                                             Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'null'),),
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.refresh, 'Restart', 'reboot', ''),),
                                                             
                                   Padding(
-                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'null'),),
+                                  padding: EdgeInsets.only(top:20.0,right:20),child: buildPowerItem(Icons.developer_mode, 'Terminal', 'killall', 'system_recovery'),),
                                                             
                                                             ],)),),
                                                           margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),

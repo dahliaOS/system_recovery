@@ -43,7 +43,11 @@ flutter:
   assets:
     - lib/compiled-recovery.png
     - lib/logo-color.png
+    - lib/
     - lib/recoverylo.png
+    - lib/fonts/SulphurPoint-Bold.ttf
+    - lib/fonts/SulphurPoint-Light.ttf
+    - lib/fonts/SulphurPoint-Regular.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
