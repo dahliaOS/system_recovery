@@ -93,7 +93,7 @@ class FirstRoute extends StatelessWidget {
         body: new Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('lib/collage.png'),
+          image: AssetImage('lib/sys-banner.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -104,24 +104,13 @@ class FirstRoute extends StatelessWidget {
           children: [
             Center(
               child: Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: Image.asset(
-                    'lib/logo-nobg.png',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.bottomCenter,
-                  )),
-            ),
-            Center(
-              child: Padding(
                   padding: EdgeInsets.only(
-                      left: 25.0, right: 25.0, top: 0.0, bottom: 35.0),
+                      left: 25.0, right: 25.0, top: 35.0, bottom: 15.0),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Welcome!',
+                            text: 'Welcome to dahliaOS!',
                             style: TextStyle(
                                 fontFamily: "Roboto Light",
                                 fontSize: 30,
@@ -133,36 +122,33 @@ class FirstRoute extends StatelessWidget {
             Center(
               child: Padding(
                   padding: EdgeInsets.only(
-                      left: 25.0, right: 25.0, top: 0.0, bottom: 35.0),
+                      left: 50.0, right: 50.0, top: 10.0, bottom: 25.0),
                   child: Text(
-                      'Your system is in Recovery Mode. Recovery Mode can be used to repair your system, configure multiple operating systems, enable developer mode and more. Press Reboot to exit Recovery Mode, or press Continue to repair your system and view options.',
+                      'Welcome to the dahliaOS Alpha! You are currently using dahliaOS Linux-Based 200715.1. This system may be unstable, and is for testing only. If you run into any issues, please report them to the development team on Github, Twitter, or Discord.',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color(4278190080),
+                          color: Colors.grey[700],
                           fontSize: 15.0,
                           fontStyle: FontStyle.normal))),
             ),
-            Expanded(
-              child: new Container(),
-            ),
             Align(
                 child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   Padding(
-                      padding:
-                          EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
+                      padding: EdgeInsets.only(top: 0.0, right: 20, bottom: 15),
                       child: OutlineButton(
                           onPressed: () {
                             showGeneralDialog(
                               barrierLabel: "Barrier",
                               barrierDismissible: true,
                               barrierColor: Colors.black.withOpacity(0.5),
-                              transitionDuration: Duration(milliseconds: 200),
+                              transitionDuration: Duration(milliseconds: 120),
                               context: context,
                               pageBuilder: (_, __, ___) {
                                 return Align(
-                                  alignment: Alignment.bottomCenter,
+                                  alignment: Alignment.center,
                                   child: Container(
                                     height: 90,
                                     width: 400,
@@ -181,7 +167,7 @@ class FirstRoute extends StatelessWidget {
                                                 Icons.power_settings_new,
                                                 'Power off',
                                                 'shutdown',
-                                                '-h'),
+                                                '-h now'),
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(
@@ -196,13 +182,13 @@ class FirstRoute extends StatelessWidget {
                                                 Icons.developer_mode,
                                                 'Terminal',
                                                 'killall',
-                                                'system_recovery'),
+                                                'pangolin_desktop'),
                                           ),
                                         ],
                                       )),
                                     ),
                                     margin: EdgeInsets.only(
-                                        bottom: 50, left: 12, right: 12),
+                                        bottom: 75, left: 12, right: 12),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),
@@ -211,11 +197,8 @@ class FirstRoute extends StatelessWidget {
                                 );
                               },
                               transitionBuilder: (_, anim, __, child) {
-                                return SlideTransition(
-                                  position: Tween(
-                                          begin: Offset(0, 1),
-                                          end: Offset(0, 0))
-                                      .animate(anim),
+                                return FadeTransition(
+                                  opacity: anim,
                                   child: child,
                                 );
                               },
@@ -224,8 +207,7 @@ class FirstRoute extends StatelessWidget {
                           color: Colors.deepOrange[500],
                           child: Text('Reboot'))),
                   Padding(
-                      padding:
-                          EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
+                      padding: EdgeInsets.only(top: 00.0, bottom: 15),
                       child: RaisedButton(
                           onPressed: () {
                             Navigator.push(
@@ -236,8 +218,11 @@ class FirstRoute extends StatelessWidget {
                           },
                           elevation: 1.0,
                           color: Colors.deepOrange[500],
-                          child: Text('Continue'))),
-                ]))
+                          child: Text("Let's go"))),
+                ])),
+            Expanded(
+              child: new Container(),
+            ),
           ]),
     ));
   }
@@ -311,6 +296,7 @@ class SecondRoute extends StatelessWidget {
                               Icons.error_outline, 'Kernel Panic', context),
                           shellItem(
                               Icons.sync_problem, 'Recovery Mode', context),
+                          shellItem(Icons.lock, 'Lock Screen', context),
                           shellItem(Icons.developer_mode,
                               'Command Line Interface', context),
                         ])))),
@@ -328,11 +314,11 @@ class SecondRoute extends StatelessWidget {
                             barrierLabel: "Barrier",
                             barrierDismissible: true,
                             barrierColor: Colors.black.withOpacity(0.5),
-                            transitionDuration: Duration(milliseconds: 200),
+                            transitionDuration: Duration(milliseconds: 120),
                             context: context,
                             pageBuilder: (_, __, ___) {
                               return Align(
-                                alignment: Alignment.bottomCenter,
+                                alignment: Alignment.center,
                                 child: Container(
                                   height: 90,
                                   width: 400,
@@ -351,7 +337,7 @@ class SecondRoute extends StatelessWidget {
                                               Icons.power_settings_new,
                                               'Power off',
                                               'shutdown',
-                                              '-h'),
+                                              '-h now'),
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
@@ -366,13 +352,13 @@ class SecondRoute extends StatelessWidget {
                                               Icons.developer_mode,
                                               'Terminal',
                                               'killall',
-                                              'system_recovery'),
+                                              'pangolin_desktop'),
                                         ),
                                       ],
                                     )),
                                   ),
                                   margin: EdgeInsets.only(
-                                      bottom: 50, left: 12, right: 12),
+                                      bottom: 75, left: 12, right: 12),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -381,10 +367,8 @@ class SecondRoute extends StatelessWidget {
                               );
                             },
                             transitionBuilder: (_, anim, __, child) {
-                              return SlideTransition(
-                                position: Tween(
-                                        begin: Offset(0, 1), end: Offset(0, 0))
-                                    .animate(anim),
+                              return FadeTransition(
+                                opacity: anim,
                                 child: child,
                               );
                             },
