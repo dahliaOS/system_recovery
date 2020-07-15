@@ -8,9 +8,9 @@ import 'dart:io';
 
 void main() {
 getSystem();
-  runApp(new RecoveryApp());
+  runApp(new RecoveryModeApp());
 }
-class RecoveryApp extends StatelessWidget {
+class RecoveryModeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
