@@ -112,7 +112,8 @@ class FirstRoute extends StatelessWidget {
                         TextSpan(
                             text: 'Welcome to dahliaOS!',
                             style: TextStyle(
-                                fontFamily: "Roboto Light",
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.w300,
                                 fontSize: 30,
                                 color: Colors.grey[900])),
                       ],
