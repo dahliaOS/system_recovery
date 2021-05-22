@@ -34,6 +34,7 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                       onPressed: () {
                         showPowerMenu(context);
                       },
+                      tooltip: "Power Options",
                       icon: Icon(Icons.power_settings_new))
                 ],
               ) //Image.asset('lib/logo-color.png',width: 165.0, height: 32.0, fit: BoxFit.fill)
@@ -116,17 +117,33 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                             EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
                         child: OutlinedButton(
                             onPressed: () {
-                              var confirmation = alertConfirm(
-                                  "Are you sure you want to skip Network Setup?",
-                                  "text",
-                                  context);
-                              if (confirmation = true) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DiskSelection()),
-                                );
-                              }
+                              bool popContext;
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    title: Text("Skip network setup?"),
+                                    content: Text(
+                                        "Without a network connection, dahliaOS will not be able to fetch the latest updates, install packages, or sync enrollment profiles."),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DiskSelection()),
+                                          );
+                                        },
+                                        child: Text("OK"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             },
                             child: Text('Skip'))),
                     Padding(

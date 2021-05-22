@@ -31,6 +31,7 @@ class _EnterpriseEnrollmentState extends State<EnterpriseEnrollment> {
                       onPressed: () {
                         showPowerMenu(context);
                       },
+                      tooltip: "Power Options",
                       icon: Icon(Icons.power_settings_new))
                 ],
               ) //Image.asset('lib/logo-color.png',width: 165.0, height: 32.0, fit: BoxFit.fill)

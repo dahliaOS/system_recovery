@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget selectableDisk() {
   return Container(
+    padding: EdgeInsets.only(right: 16),
     child: Center(
       child: Column(
         children: [

@@ -35,6 +35,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                       onPressed: () {
                         showPowerMenu(context);
                       },
+                      tooltip: "Power Options",
                       icon: Icon(Icons.power_settings_new))
                 ],
               ) //Image.asset('lib/logo-color.png',width: 165.0, height: 32.0, fit: BoxFit.fill)
@@ -59,18 +60,46 @@ class _DiskSelectionState extends State<DiskSelection> {
                   Container(
                     height: 10,
                   ),
-                  selectableDisk(),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.wifi_tethering),
-                    title: Text('Add other WiFi network'),
-                    //subtitle: Text('Allows potentially insecure unsigned code to run on the base system'),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      selectableDisk(),
+                    ],
+                  ),
+                  Container(
+                    height: 16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          tooltip: "Detect disks",
+                          icon: Icon(Icons.refresh)),
+                      Text(
+                        "Selected /dev/sda (SDSSDH3512G)",
+                        style: TextStyle(color: Colors.grey[900]),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 16,
                   ),
                   formAlert(
                       Colors.amber,
-                      "Warning: dahliaOS can't be dual booted yet.",
+                      "Warning: dahliaOS can't be dual booted yet. The entire disk will be erased.",
                       Color(0xFF222222),
                       Icons.warning),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.cloud_done),
+                    title: Text('Remote Home Folder'),
+                    subtitle: Text("Store files on a remote network device"),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {},
+                  ),
                 ],
               ),
             )),
@@ -99,7 +128,33 @@ class _DiskSelectionState extends State<DiskSelection> {
                             EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    title: Text(
+                                        "Erase disk and install dahliaOS?"),
+                                    content: Text(
+                                        "All data on the disk /dev/sda will be erased. This action cannot be undone. Do you want to continue?"),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text("CANCEL"),
+                                      ),
+                                      // usually buttons at the bottom of the dialog
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text("ERASE DISK"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             },
                             child: Text('Install'))),
                   ],
