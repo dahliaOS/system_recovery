@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:recovery/recovery.dart';
+import 'package:recovery/pages/recovery.dart';
 import 'dart:io';
 
-
-
-
-
 void main() {
-getSystem();
+  getSystem();
   runApp(new RecoveryApp());
 }
-class RecoveryApp extends StatelessWidget {
 
+class RecoveryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -24,7 +20,6 @@ class RecoveryApp extends StatelessWidget {
   }
 }
 
-
 class recovery extends StatefulWidget {
   recovery({Key key}) : super(key: key);
   @override
@@ -32,10 +27,8 @@ class recovery extends StatefulWidget {
 }
 
 class _recoveryState extends State<recovery> {
-    @override
-    Widget build(BuildContext context) {
-      return new RecoveryPage();
-      
-    }
+  @override
+  Widget build(BuildContext context) {
+    return new RecoveryPage();
+  }
 }
-
