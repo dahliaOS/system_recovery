@@ -7,12 +7,12 @@ import '../widgets/diskWidget.dart';
 import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
 
-class DiskSelection extends StatefulWidget {
+class AccountSetup extends StatefulWidget {
   @override
-  _DiskSelectionState createState() => _DiskSelectionState();
+  _AccountSetupState createState() => _AccountSetupState();
 }
 
-class _DiskSelectionState extends State<DiskSelection> {
+class _AccountSetupState extends State<AccountSetup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(
-                    Icons.save_alt,
+                    Icons.person_add,
                     size: 32,
                     color: Colors.deepOrange,
                   ),
@@ -42,7 +42,7 @@ class _DiskSelectionState extends State<DiskSelection> {
               ),
           Padding(
               padding: EdgeInsets.only(left: 25, bottom: 15),
-              child: Text('Install dahliaOS',
+              child: Text('Accounts',
                   style: TextStyle(
                       fontFamily: "Roboto",
                       fontWeight: FontWeight.w300,

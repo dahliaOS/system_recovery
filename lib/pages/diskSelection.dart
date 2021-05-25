@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'dart:io';
 import 'recovery.dart';
 import '../widgets/diskWidget.dart';
-
+import 'accountSetup.dart';
 import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
 
@@ -128,6 +128,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                             EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
                         child: ElevatedButton(
                             onPressed: () {
+                              bool nextPage;
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -148,12 +149,19 @@ class _DiskSelectionState extends State<DiskSelection> {
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
+                                          nextPage = true;
                                         },
                                         child: Text("ERASE DISK"),
                                       ),
                                     ],
                                   );
                                 },
+                              );
+                              if (nextPage == false) {}
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AccountSetup()),
                               );
                             },
                             child: Text('Install'))),
