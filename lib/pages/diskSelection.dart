@@ -12,7 +12,10 @@ class DiskSelection extends StatefulWidget {
   _DiskSelectionState createState() => _DiskSelectionState();
 }
 
+enum SystemDisks { sda, sdb, mmcblk0 }
+
 class _DiskSelectionState extends State<DiskSelection> {
+  SystemDisks _disks = SystemDisks.sda;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +47,11 @@ class _DiskSelectionState extends State<DiskSelection> {
               padding: EdgeInsets.only(left: 25, bottom: 15),
               child: Text('Install dahliaOS',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           Expanded(
             child: Center(
                 child: Container(
@@ -60,30 +64,59 @@ class _DiskSelectionState extends State<DiskSelection> {
                   Container(
                     height: 10,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      selectableDisk(),
-                    ],
+                  //Disks list
+                  ListTile(
+                    leading: Image.asset(
+                      "lib/drive-harddisk.png",
+                      height: 35,
+                    ),
+                    title: Text('SDSSDH3512G'),
+                    subtitle: Text("/dev/sda - 500 GiB"),
+                    trailing: Radio(
+                      value: SystemDisks.sda,
+                      groupValue: _disks,
+                      onChanged: (SystemDisks value) {
+                        setState(() {
+                          _disks = value;
+                        });
+                      },
+                    ),
                   ),
-                  Container(
-                    height: 16,
+                  ListTile(
+                    leading: Image.asset(
+                      "lib/media-memory.png",
+                      height: 35,
+                    ),
+                    title: Text('Macintosh SSD'),
+                    subtitle: Text("/dev/sdb - 512 GiB"),
+                    trailing: Radio(
+                      value: SystemDisks.sdb,
+                      groupValue: _disks,
+                      onChanged: (SystemDisks value) {
+                        setState(() {
+                          _disks = value;
+                        });
+                      },
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {},
-                          tooltip: "Detect disks",
-                          icon: Icon(Icons.refresh)),
-                      Text(
-                        "Selected /dev/sda (SDSSDH3512G)",
-                        style: TextStyle(color: Colors.grey[900]),
-                      ),
-                    ],
+                  ListTile(
+                    leading: Image.asset(
+                      "lib/media-flash.png",
+                      height: 35,
+                    ),
+                    title: Text('Apple SD Card Reader'),
+                    subtitle: Text("/dev/mmcblk0 - 16 GiB"),
+                    trailing: Radio(
+                      value: SystemDisks.mmcblk0,
+                      groupValue: _disks,
+                      onChanged: (SystemDisks value) {
+                        setState(() {
+                          _disks = value;
+                        });
+                      },
+                    ),
                   ),
+                  //end of disks section
                   Container(
                     height: 16,
                   ),
@@ -128,7 +161,6 @@ class _DiskSelectionState extends State<DiskSelection> {
                             EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
                         child: ElevatedButton(
                             onPressed: () {
-                              bool nextPage;
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -149,19 +181,12 @@ class _DiskSelectionState extends State<DiskSelection> {
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
-                                          nextPage = true;
                                         },
                                         child: Text("ERASE DISK"),
                                       ),
                                     ],
                                   );
                                 },
-                              );
-                              if (nextPage == false) {}
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AccountSetup()),
                               );
                             },
                             child: Text('Install'))),

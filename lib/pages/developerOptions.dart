@@ -43,10 +43,11 @@ class _DeveloperModeState extends State<DeveloperMode> {
               padding: EdgeInsets.only(left: 25, bottom: 15),
               child: Text('Developer Mode',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           /*Center(
             child: Padding(
                 padding: EdgeInsets.only(

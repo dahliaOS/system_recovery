@@ -43,10 +43,11 @@ class _WirelessConnectionState extends State<WirelessConnection> {
               padding: EdgeInsets.only(left: 25, bottom: 15),
               child: Text('Network Connection',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           Expanded(
             child: Center(
                 child: Container(
@@ -117,7 +118,6 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                             EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
                         child: OutlinedButton(
                             onPressed: () {
-                              bool popContext;
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -131,18 +131,18 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DiskSelection()),
-                                          );
                                         },
                                         child: Text("OK"),
                                       ),
                                     ],
                                   );
                                 },
+                              );
+                              Navigator.of(context).pop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DiskSelection()),
                               );
                             },
                             child: Text('Skip'))),

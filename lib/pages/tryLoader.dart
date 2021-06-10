@@ -41,10 +41,11 @@ class _TryLoaderState extends State<TryLoader> {
               ),
               child: Text('Try dahliaOS',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           Expanded(
             child: Center(
                 child: Container(

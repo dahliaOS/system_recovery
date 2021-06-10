@@ -44,10 +44,11 @@ class _AccountSetupState extends State<AccountSetup> {
               padding: EdgeInsets.only(left: 25, bottom: 15),
               child: Text('Accounts',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           Expanded(
             child: Center(
                 child: Container(
@@ -55,50 +56,61 @@ class _AccountSetupState extends State<AccountSetup> {
               margin: EdgeInsets.only(left: 25, right: 25),
               child: ListView(
                 children: <Widget>[
-                  Text(
-                      'Select a drive to install dahliaOS on. An 8GiB or larger drive is recommended.'),
                   Container(
-                    height: 10,
+                    height: 15,
+                  ),
+                  /*TextFormField(
+                    enabled: true,
+                    decoration: InputDecoration(
+                        //prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Computer\'s name'),
+                  ),*/
+                  Container(
+                    height: 15,
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      selectableDisk(),
+                      Column(
+                        children: [
+                          TextFormField(
+                            enabled: true,
+                            decoration: InputDecoration(
+                                //prefixIcon: Icon(Icons.person),
+                                border: OutlineInputBorder(),
+                                labelText: 'Full name'),
+                          ),
+                          Container(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            enabled: true,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Username'),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                   Container(
-                    height: 16,
+                    height: 15,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {},
-                          tooltip: "Detect disks",
-                          icon: Icon(Icons.refresh)),
-                      Text(
-                        "Selected /dev/sda (SDSSDH3512G)",
-                        style: TextStyle(color: Colors.grey[900]),
-                      ),
-                    ],
+                  TextFormField(
+                    obscureText: true,
+                    enabled: true,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: 'Password'),
                   ),
                   Container(
-                    height: 16,
+                    height: 15,
                   ),
-                  formAlert(
-                      Colors.amber,
-                      "Warning: dahliaOS can't be dual booted yet. The entire disk will be erased.",
-                      Color(0xFF222222),
-                      Icons.warning),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.cloud_done),
-                    title: Text('Remote Home Folder'),
-                    subtitle: Text("Store files on a remote network device"),
-                    trailing: Icon(Icons.arrow_forward),
-                    onTap: () {},
+                  TextFormField(
+                    obscureText: true,
+                    enabled: true,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Confirm Password'),
                   ),
                 ],
               ),

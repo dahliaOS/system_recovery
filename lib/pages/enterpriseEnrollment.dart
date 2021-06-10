@@ -42,10 +42,11 @@ class _EnterpriseEnrollmentState extends State<EnterpriseEnrollment> {
               ),
               child: Text('Enterprise Enrollment',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           Expanded(
             child: Center(
                 child: Container(

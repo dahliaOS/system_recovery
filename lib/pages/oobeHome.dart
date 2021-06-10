@@ -6,6 +6,8 @@ import 'enterpriseEnrollment.dart';
 import 'tryLoader.dart';
 import 'wirelessConnection.dart';
 
+void darkmode() {}
+
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,10 +40,11 @@ class SecondRoute extends StatelessWidget {
               padding: EdgeInsets.only(left: 25),
               child: Text('Welcome to dahliaOS!',
                   style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300,
-                      fontSize: 25,
-                      color: Colors.grey[900]))),
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w300,
+                    fontSize: 25,
+                    color: Theme.of(context).colorScheme.foregroundText,
+                  ))),
           /*Center(
             child: Padding(
                 padding: EdgeInsets.only(

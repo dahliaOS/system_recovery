@@ -65,32 +65,58 @@ void showPowerMenu(context) {
 
 class RecoveryPage extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey[900],
-        body: Center(
-            child: SizedBox(
-                width: 640.0,
-                height: 540.0,
-                child: ClipRRect(
-                  borderRadius: new BorderRadius.all(new Radius.circular(5.0)),
-                  child:
+    return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("lib/assets/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Scaffold(
+            backgroundColor: Colors.grey[900].withOpacity(0.0),
+            body: Center(
+                child: SizedBox(
+                    width: 640.0,
+                    height: 540.0,
+                    child: ClipRRect(
+                      borderRadius:
+                          new BorderRadius.all(new Radius.circular(5.0)),
+                      child:
 
-                      /**/
+                          /**/
 
-                      new MyApp(),
-                ))),
-        appBar: AppBar(
-            backgroundColor: const Color(0x00ffffff),
-            centerTitle: false,
-            elevation: 0.0,
-            title: Text(
-              getSystem(),
-              style: new TextStyle(
+                          new MyApp(),
+                    ))),
+            appBar: AppBar(
+              backgroundColor: const Color(0x00ffffff),
+              centerTitle: false,
+              elevation: 0.0,
+              title: Text(
+                getSystem(),
+                style: new TextStyle(
                   fontSize: 15.0,
                   color: const Color(0xFFffffff),
-                  fontFamily: "Roboto"),
+                  fontFamily: "Roboto",
+                  shadows: [
+                    Shadow(
+                      blurRadius: 2.0,
+                      color: Colors.black,
+                      offset: Offset(0.0, 0.0),
+                    ),
+                  ],
+                ),
+              ),
             )));
   }
+}
+
+extension CustomColorScheme on ColorScheme {
+  Color get foregroundText => brightness == Brightness.light
+      ? Colors.grey[900]
+      : const Color(0xFFffffff);
+
+  Color get logoColor =>
+      brightness == Brightness.light ? Colors.deepOrange : Colors.white;
 }
 
 class MyApp extends StatelessWidget {
@@ -100,7 +126,20 @@ class MyApp extends StatelessWidget {
       title: 'dahliaOS-setup',
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
+        brightness: Brightness.light,
+        accentColor: Colors.deepOrange,
+        visualDensity: VisualDensity.comfortable,
+        primaryColor: Colors.deepOrange,
         primarySwatch: Colors.deepOrange,
+      ),
+      themeMode: ThemeMode.light,
+      darkTheme: new ThemeData(
+        brightness: Brightness.dark,
+        accentColor: Colors.deepOrange,
+        visualDensity: VisualDensity.comfortable,
+        primaryColor: Colors.deepOrange,
+        primarySwatch: Colors.deepOrange,
+        toggleableActiveColor: Colors.deepOrange,
       ),
       home: new SecondRoute(),
     );
