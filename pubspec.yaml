@@ -43,6 +43,7 @@ flutter:
   assets:
     - lib/assets/background.png
     - lib/logo-color.png
+    - lib/assets/
     - lib/
     - lib/recoverylo.png
     - lib/fonts/SulphurPoint-Bold.ttf

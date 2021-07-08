@@ -4,6 +4,7 @@ import 'dart:io';
 
 void main() {
   getSystem();
+
   runApp(new RecoveryApp());
 }
 

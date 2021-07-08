@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recovery/pages/hardwareSumary.dart';
 import 'dart:io';
 import 'recovery.dart';
 import 'developerOptions.dart';
@@ -84,7 +85,7 @@ class SecondRoute extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => WirelessConnection()),
+                            builder: (context) => HardwareSummary()),
                       );
                     },
                   ),
