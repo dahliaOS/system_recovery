@@ -115,12 +115,6 @@ class _HardwareSummaryState extends State<HardwareSummary> {
                       )
                     ],
                   ),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.wifi_tethering),
-                    title: Text('Add other WiFi network'),
-                    //subtitle: Text('Allows potentially insecure unsigned code to run on the base system'),
-                  ),
                 ],
               ),
             )),
