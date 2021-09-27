@@ -21,7 +21,7 @@ String gpuNames() {
   ProcessResult result = Process.runSync('neofetch', ['gpu']);
   //example result: gpu: Intel HD Graphics 4000, NVIDIA GeForce GT 650M
   var gpuString = result.stdout;
-  return gpuString.replaceFirst("gpu: ", '');
+  return gpuString.replaceAll("gpu: ", '');
 }
 
 String ram() {

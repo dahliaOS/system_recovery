@@ -101,7 +101,8 @@ class _HardwareSummaryState extends State<HardwareSummary> {
                             'lib/assets/gpu.png',
                             height: 128,
                           ),
-                          Text(gpuNames().replaceAll(', ', '\n'))
+                          Container(width:256,child: Text(gpuNames().replaceAll(', ', '\n')),)
+                          
                         ],
                       ),
                       Column(
