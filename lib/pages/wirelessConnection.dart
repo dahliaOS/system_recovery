@@ -5,6 +5,9 @@ import 'recovery.dart';
 import 'diskSelection.dart';
 import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
+import 'dart:convert';
+import '../nmBR.dart';
+
 
 class WirelessConnection extends StatefulWidget {
   @override
@@ -60,7 +63,8 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                   Container(
                     height: 10,
                   ),
-                  ListTile(
+                  Text(getNetworks()),
+                  /*ListTile(
                     leading: Icon(Icons.settings_ethernet),
                     title: Text('Ethernet'),
                     subtitle: Text('Not connected'),
@@ -89,7 +93,9 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                     leading: Icon(Icons.wifi_tethering),
                     title: Text('Add other WiFi network'),
                     //subtitle: Text('Allows potentially insecure unsigned code to run on the base system'),
-                  ),
+                  ),*/
+                  
+                  
                 ],
               ),
             )),
