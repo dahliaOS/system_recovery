@@ -73,6 +73,8 @@ class SecondRoute extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => TryLoader()),
                       );
+                      Process.run('/home/nmcain/Desktop/dahliaos/pangolin_desktop/build/linux/x64/release/bundle/pangolin_desktop', ['']);
+                      Process.run('killall', ['system_recovery']);
                     },
                   ),
                   ListTile(
