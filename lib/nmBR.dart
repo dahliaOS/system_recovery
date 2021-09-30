@@ -5,18 +5,15 @@ import 'pages/alertConfirm.dart';
 import 'widgets/formAlert.dart';
 import 'dart:convert';
 
-
-
-String getNetworks(){
-  ProcessResult result = Process.runSync('nmcli', ['--terse','-e','no','dev','wifi']);
+String getNetworks() {
+  ProcessResult result =
+      Process.runSync('nmcli', ['--terse', '-e', 'no', 'dev', 'wifi']);
   var networks = result.stdout;
+  List availableNetworks;
 
+  availableNetworks = networks.split("\n");
 
+  //.forEach((network) {network = network.split(':');});
 
-	networks.split("\n").forEach((network){
-	network = network.split(':');
-	});
-return(networks.toString());
+  return (availableNetworks.toString());
 }
-
-
