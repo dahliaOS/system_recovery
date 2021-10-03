@@ -1,0 +1,10 @@
+{
+      "id": "io.dahliaos.system_recovery",
+      "altName": "system_recovery",
+      "realName": "System Recovery",
+      "version": "dahliaOS-latest",
+      "description": "Recover and repair dahliaOS. This shell should not be distributed in userspace",
+      "sourceCode": "https://github.com/dahliaOS/system_recovery",
+      "hash": "DAP_AUTOMATION_PKGHASH",
+      "architecture": "x86_64"
+},
