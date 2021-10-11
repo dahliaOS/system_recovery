@@ -8,7 +8,6 @@ import '../widgets/formAlert.dart';
 import 'dart:convert';
 import '../nmBR.dart';
 
-
 class WirelessConnection extends StatefulWidget {
   @override
   _WirelessConnectionState createState() => _WirelessConnectionState();
@@ -57,13 +56,15 @@ class _WirelessConnectionState extends State<WirelessConnection> {
               height: 350,
               margin: EdgeInsets.only(left: 25, right: 25),
               child: ListView(
-                children: <Widget>[
+                  children: parseNetworks(
+                      context) /*<Widget>[
                   Text(
                       'For the best experience, connect to a network before installing dahliaOS.'),
                   Container(
                     height: 10,
                   ),
-                  Text(getNetworks()),
+                  networkTile('hi'),
+                  
                   /*ListTile(
                     leading: Icon(Icons.settings_ethernet),
                     title: Text('Ethernet'),
@@ -94,10 +95,8 @@ class _WirelessConnectionState extends State<WirelessConnection> {
                     title: Text('Add other WiFi network'),
                     //subtitle: Text('Allows potentially insecure unsigned code to run on the base system'),
                   ),*/
-                  
-                  
-                ],
-              ),
+                ],*/
+                  ),
             )),
           ),
           Align(
