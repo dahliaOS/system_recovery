@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'dart:io';
 import 'recovery.dart';
-import '../widgets/diskWidget.dart';
-
-import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
 
 class AccountSetup extends StatefulWidget {
@@ -27,7 +23,7 @@ class _AccountSetupState extends State<AccountSetup> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(
-                    Icons.person_add,
+                    Icons.business,
                     size: 32,
                     color: Colors.deepOrange,
                   ),
@@ -41,8 +37,10 @@ class _AccountSetupState extends State<AccountSetup> {
               ) //Image.asset('lib/logo-color.png',width: 165.0, height: 32.0, fit: BoxFit.fill)
               ),
           Padding(
-              padding: EdgeInsets.only(left: 25, bottom: 15),
-              child: Text('Accounts',
+              padding: EdgeInsets.only(
+                left: 25,
+              ),
+              child: Text('Enterprise Enrollment',
                   style: TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w300,
@@ -59,58 +57,35 @@ class _AccountSetupState extends State<AccountSetup> {
                   Container(
                     height: 15,
                   ),
-                  /*TextFormField(
-                    enabled: true,
-                    decoration: InputDecoration(
-                        //prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(),
-                        labelText: 'Computer\'s name'),
-                  ),*/
+                  Text(
+                      "Enter an enterprise URL and a public key to configure dahliaOS for use with an organization. For more information, see docs.dahliaos.io/enterprise/enrollment"),
                   Container(
-                    height: 15,
+                    height: 25,
                   ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          TextFormField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                                //prefixIcon: Icon(Icons.person),
-                                border: OutlineInputBorder(),
-                                labelText: 'Full name'),
-                          ),
-                          Container(
-                            height: 15,
-                          ),
-                          TextFormField(
-                            enabled: true,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Username'),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                  formAlert(
+                      Colors.lightBlue,
+                      'This device is already enrolled with the organization "dahliaOS"',
+                      Color(0xFFffffff),
+                      Icons.info_outline),
                   Container(
-                    height: 15,
+                    height: 25,
                   ),
                   TextFormField(
-                    obscureText: true,
-                    enabled: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Password'),
-                  ),
-                  Container(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    enabled: true,
+                    enabled: false,
+                    initialValue: "https://dahliaOS.io",
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Confirm Password'),
+                        labelText: 'Organization URL'),
+                  ),
+                  Container(
+                    height: 25,
+                  ),
+                  TextFormField(
+                    enabled: false,
+                    initialValue: 'NaN',
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enrollment Key'),
                   ),
                 ],
               ),
@@ -119,58 +94,15 @@ class _AccountSetupState extends State<AccountSetup> {
           Align(
               child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 20.0, left: 20, bottom: 15),
-                  child: OutlinedButton.icon(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        size: 16,
-                      ),
-                      label: Text("Back")),
-                ),
-                Row(
-                  children: [
-                    Padding(
-                        padding:
-                            EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  // return object of type Dialog
-                                  return AlertDialog(
-                                    title: Text(
-                                        "Erase disk and install dahliaOS?"),
-                                    content: Text(
-                                        "All data on the disk /dev/sda will be erased. This action cannot be undone. Do you want to continue?"),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text("CANCEL"),
-                                      ),
-                                      // usually buttons at the bottom of the dialog
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text("ERASE DISK"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            child: Text('Install'))),
-                  ],
-                )
+                    padding: EdgeInsets.only(top: 20.0, right: 20, bottom: 15),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Back'))),
               ]))
         ]));
   }

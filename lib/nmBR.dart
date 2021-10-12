@@ -132,6 +132,7 @@ List parseNetworks(context) {
     ),
   ];
   input.forEach((network) {
+    //TODO: Remove channel and frequency duplicate networks
     if (network.toString().split(":").length > 1) {
       print(network);
       if (network.toString().split(":")[0] == "*") {

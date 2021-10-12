@@ -7,6 +7,7 @@ import '../widgets/diskWidget.dart';
 import 'accountSetup.dart';
 import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
+import '../disk_info.dart';
 
 class DiskSelection extends StatefulWidget {
   @override
@@ -71,7 +72,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                       "lib/drive-harddisk.png",
                       height: 35,
                     ),
-                    title: Text('SDSSDH3512G'),
+                    title: Text(devDrives().toString()),
                     subtitle: Text("/dev/sda - 500 GiB"),
                     trailing: Radio(
                       value: SystemDisks.sda,
