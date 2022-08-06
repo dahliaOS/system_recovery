@@ -46,7 +46,7 @@ class _WirelessConnectionState extends State<WirelessConnection> {
               child: Text('Network Connection',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),

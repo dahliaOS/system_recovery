@@ -42,7 +42,7 @@ class SecondRoute extends StatelessWidget {
               child: Text('Welcome to dahliaOS!',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),
@@ -73,7 +73,9 @@ class SecondRoute extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => TryLoader()),
                       );
-                      Process.run('/home/nmcain/Desktop/dahliaos/pangolin_desktop/build/linux/x64/release/bundle/pangolin_desktop', ['']);
+                      Process.run(
+                          '/home/nmcain/Desktop/dahliaos/pangolin_desktop/build/linux/x64/release/bundle/pangolin_desktop',
+                          ['']);
                       Process.run('killall', ['system_recovery']);
                     },
                   ),

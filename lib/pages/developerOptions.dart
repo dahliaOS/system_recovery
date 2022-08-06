@@ -44,7 +44,7 @@ class _DeveloperModeState extends State<DeveloperMode> {
               child: Text('Developer Mode',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),

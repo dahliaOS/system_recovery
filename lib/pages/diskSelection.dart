@@ -50,7 +50,7 @@ class _DiskSelectionState extends State<DiskSelection> {
               child: Text('Install dahliaOS',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),
@@ -222,7 +222,7 @@ class _DiskConfirmationState extends State<DiskConfirmation> {
               child: Text('Erase disk?',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),

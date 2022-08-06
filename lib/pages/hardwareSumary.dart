@@ -68,7 +68,7 @@ class _HardwareSummaryState extends State<HardwareSummary> {
               child: Text('Hardware Compatibility',
                   style: TextStyle(
                     fontFamily: "Roboto",
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontSize: 25,
                     color: Theme.of(context).colorScheme.foregroundText,
                   ))),
