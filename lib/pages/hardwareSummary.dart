@@ -8,9 +8,8 @@ import 'alertConfirm.dart';
 import '../widgets/formAlert.dart';
 
 Widget hardWaresupported() {
-  if (gpuNames().toLowerCase().contains('amd') == false &&
-          processorName().toLowerCase().contains('intel') ||
-      gpuNames().toLowerCase().contains('intel') ||
+  if (gpuNames().toLowerCase().contains('intel') &&
+          gpuNames().toLowerCase().contains('intel') ||
       gpuNames().toLowerCase().contains('nvidia')) {
     return formAlert(Colors.green, "This computer can run dahliaOS comfortably",
         Color(0xFFffffff), Icons.check_circle_outline);

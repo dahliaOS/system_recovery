@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recovery/pages/hardwareSumary.dart';
+import 'package:recovery/pages/hardwareSummary.dart';
 import 'dart:io';
 import 'recovery.dart';
 import 'developerOptions.dart';
@@ -73,7 +73,9 @@ class SecondRoute extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => TryLoader()),
                       );
-                      Process.run('/home/nmcain/Desktop/dahliaos/pangolin_desktop/build/linux/x64/release/bundle/pangolin_desktop', ['']);
+                      Process.run(
+                          '/home/nmcain/Desktop/dahliaos/pangolin_desktop/build/linux/x64/release/bundle/pangolin_desktop',
+                          ['']);
                       Process.run('killall', ['system_recovery']);
                     },
                   ),
