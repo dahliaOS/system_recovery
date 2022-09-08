@@ -1,1 +1,1 @@
-lsblk --output NAME,LABEL,MODEL -nr | awk '{print $1}'
+lsblk | grep 'disk' | cut -d" " -f1
