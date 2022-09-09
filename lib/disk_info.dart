@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-
-List drives;
+import 'widgets/formAlert.dart';
 
 List devDrives() {
-  //todo: make sure size is read eventually to prevent confusion
   var disks =
-      Process.runSync('bash', ['disks1.sh']).stdout.toString().split('\n');
+      Process.runSync('sh', ['listDisks.sh']).stdout.toString().split('\n');
+  disks.removeWhere((element) => element == '');
   return (disks);
 }
 
-List diskTiles(List drives, List info) {
-  List diskwidgets;
-  diskwidgets.add(
-    Text(
-        'Select a drive to install dahliaOS on. An 8GiB or larger drive is recommended.'),
-  );
-  diskwidgets.add(
-    Container(
-      height: 10,
-    ),
-  );
-  drives.forEach((network) {
-    print(network.position);
-  });
-  return diskwidgets;
+String getSystem() {
+  ProcessResult result = Process.runSync('uname', ['-a']);
+  var verString = result.stdout;
+  return verString;
+}
+
+String sizeDrives(String mountPoint) {
+  ProcessResult result =
+      Process.runSync('sh', ['diskSize.sh', '/dev/' + mountPoint]);
+  var size = result.stdout;
+  return size.toString().replaceAll('\n', '');
+}
+
+String infoDrives(String mountPoint) {
+  ProcessResult result =
+      Process.runSync('sh', ['diskModel.sh', '/dev/' + mountPoint]);
+  var info = result.stdout;
+  return info.toString().replaceAll('\n', '');
 }

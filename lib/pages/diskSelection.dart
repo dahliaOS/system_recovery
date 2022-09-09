@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:recovery/buildInfo.dart';
+import 'package:recovery/pages/installFlow.dart';
 import 'dart:io';
 import 'recovery.dart';
 import '../widgets/diskWidget.dart';
@@ -14,10 +15,46 @@ class DiskSelection extends StatefulWidget {
   _DiskSelectionState createState() => _DiskSelectionState();
 }
 
-enum SystemDisks { sda, sdb, mmcblk0 }
-
 class _DiskSelectionState extends State<DiskSelection> {
-  SystemDisks _disks = SystemDisks.sda;
+  List<Widget> diskTiles(List drives) {
+    List<Widget> diskwidgets = [
+      Text(
+          'Select a drive to install dahliaOS on. An 8G or larger drive is recommended.'),
+      Container(
+        height: 10,
+      ),
+      formAlert(
+          Colors.amber,
+          "dahliaOS can't be dual booted. The entire disk will be erased.",
+          Color(0xFF222222),
+          Icons.warning),
+      Container(
+        height: 10,
+      ),
+    ];
+
+    drives.forEach((drive) {
+      diskwidgets.add(ListTile(
+          leading: Image.asset(
+            "lib/drive-harddisk.png",
+            height: 35,
+          ),
+          title: Text(infoDrives(drive)),
+          subtitle: Text("/dev/" + drive + " - " + sizeDrives(drive)),
+          trailing: Icon(Icons.arrow_forward),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DiskConfirmation(
+                        disk: drive,
+                      )),
+            );
+          }));
+    });
+    return diskwidgets;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,84 +96,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                 child: Container(
               height: 350,
               margin: EdgeInsets.only(left: 25, right: 25),
-              child: ListView(
-                children: <Widget>[
-                  Text(
-                      'Select a drive to install dahliaOS on. An 8GiB or larger drive is recommended.'),
-                  Container(
-                    height: 10,
-                  ),
-                  //Disks list
-                  ListTile(
-                    leading: Image.asset(
-                      "lib/drive-harddisk.png",
-                      height: 35,
-                    ),
-                    title: Text(devDrives().toString()),
-                    subtitle: Text("/dev/sda - 500 GiB"),
-                    trailing: Radio(
-                      value: SystemDisks.sda,
-                      groupValue: _disks,
-                      onChanged: (SystemDisks value) {
-                        setState(() {
-                          _disks = value;
-                        });
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    leading: Image.asset(
-                      "lib/media-memory.png",
-                      height: 35,
-                    ),
-                    title: Text('Macintosh SSD'),
-                    subtitle: Text("/dev/sdb - 512 GiB"),
-                    trailing: Radio(
-                      value: SystemDisks.sdb,
-                      groupValue: _disks,
-                      onChanged: (SystemDisks value) {
-                        setState(() {
-                          _disks = value;
-                        });
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    leading: Image.asset(
-                      "lib/media-flash.png",
-                      height: 35,
-                    ),
-                    title: Text('Apple SD Card Reader'),
-                    subtitle: Text("/dev/mmcblk0 - 16 GiB"),
-                    trailing: Radio(
-                      value: SystemDisks.mmcblk0,
-                      groupValue: _disks,
-                      onChanged: (SystemDisks value) {
-                        setState(() {
-                          _disks = value;
-                        });
-                      },
-                    ),
-                  ),
-                  //end of disks section
-                  Container(
-                    height: 16,
-                  ),
-                  formAlert(
-                      Colors.amber,
-                      "Warning: dahliaOS can't be dual booted yet. The entire disk will be erased.",
-                      Color(0xFF222222),
-                      Icons.warning),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.cloud_done),
-                    title: Text('Remote Home Folder'),
-                    subtitle: Text("Store files on a remote network device"),
-                    trailing: Icon(Icons.arrow_forward),
-                    onTap: () {},
-                  ),
-                ],
-              ),
+              child: ListView(children: diskTiles(devDrives())),
             )),
           ),
           Align(
@@ -156,7 +116,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                       ),
                       label: Text("Back")),
                 ),
-                Row(
+                /* Row(
                   children: [
                     Padding(
                         padding:
@@ -171,7 +131,7 @@ class _DiskSelectionState extends State<DiskSelection> {
                             },
                             child: Text('Install'))),
                   ],
-                )
+                )*/
               ]))
         ]));
   }
@@ -179,17 +139,31 @@ class _DiskSelectionState extends State<DiskSelection> {
 
 class DiskConfirmation extends StatefulWidget {
   final String disk;
-  const DiskConfirmation({Key key, this.disk})
+  final String model;
+  final String size;
+  const DiskConfirmation(
+      {Key key, String this.disk, String this.model, String this.size})
       : super(
           key: key,
         );
 
   @override
-  State<DiskConfirmation> createState() => _DiskConfirmationState();
+  State<StatefulWidget> createState() =>
+      new _DiskConfirmationState(disk, model, size);
 }
 
 class _DiskConfirmationState extends State<DiskConfirmation> {
   bool install = false;
+
+  String disk;
+  String model;
+  String size;
+
+  _DiskConfirmationState(String disk, String model, String size) {
+    this.disk = disk;
+    this.model = model;
+    this.size = size;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,7 +178,7 @@ class _DiskConfirmationState extends State<DiskConfirmation> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(
-                    Icons.delete_forever_outlined,
+                    Icons.done_all,
                     size: 32,
                     color: Colors.deepOrange,
                   ),
@@ -219,7 +193,7 @@ class _DiskConfirmationState extends State<DiskConfirmation> {
               ),
           Padding(
               padding: EdgeInsets.only(left: 25, bottom: 15),
-              child: Text('Erase disk?',
+              child: Text('Installation Summary',
                   style: TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w400,
@@ -238,16 +212,22 @@ class _DiskConfirmationState extends State<DiskConfirmation> {
                   Container(
                     height: 16,
                   ),
-                  Text(
-                      'The following changes will be made to the disk /dev/sda :'),
+                  Text('dahliaOS will be installed on the following disk:'),
                   Container(height: 16),
-                  Text(
-                      'Fast Format/Erase\nCreate partitions "boot","recovery","conf","stateless","stateful"\nInstall bootloader\nInstall dahliaOS ' +
-                          systemVersion),
+                  ListTile(
+                    leading: Image.asset(
+                      "lib/drive-harddisk.png",
+                      height: 35,
+                    ),
+                    title: Text(infoDrives(disk)),
+                    subtitle: Text("/dev/" + disk + " - " + sizeDrives(disk)),
+                    trailing: Icon(Icons.check),
+                  ),
                   Container(
                     height: 16,
                   ),
-                  Text("Is this OK?"),
+                  Text(
+                      "This will erase all data on the disk. Are you sure you want to continue?"),
                   Container(
                     height: 16,
                   ),
@@ -296,7 +276,9 @@ class _DiskConfirmationState extends State<DiskConfirmation> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => AccountSetup()),
+                                          builder: (context) => InstallFlow(
+                                                disk: disk,
+                                              )),
                                     );
                                   }
                                 : null,

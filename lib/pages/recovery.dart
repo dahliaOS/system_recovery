@@ -61,8 +61,8 @@ void showPowerMenu(context) {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0, right: 20),
-                  child: buildPowerItem(Icons.grid_3x3, 'Terminal',
-                      'killall', 'pangolin_desktop'),
+                  child: buildPowerItem(Icons.grid_3x3, 'Terminal', 'killall',
+                      'pangolin_desktop'),
                 ),
               ],
             )),

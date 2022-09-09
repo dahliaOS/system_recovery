@@ -83,7 +83,7 @@ class SecondRoute extends StatelessWidget {
                     leading: Icon(Icons.save_alt),
                     title: Text('Install dahliaOS'),
                     subtitle:
-                        Text('Configure and install dahliaOS to this computer'),
+                        Text('Configure and install dahliaOS on this computer'),
                     trailing: Icon(Icons.arrow_forward),
                     onTap: () {
                       Navigator.push(
