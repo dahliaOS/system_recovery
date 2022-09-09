@@ -1,0 +1,1 @@
+lsblk -dn -io MODEL ${1} |awk '{print $1}'
