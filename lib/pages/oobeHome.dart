@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recovery/pages/hardwareSumary.dart';
+import 'package:recovery/pages/hardwareSummary.dart';
 import 'dart:io';
 import 'recovery.dart';
 import 'developerOptions.dart';

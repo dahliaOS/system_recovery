@@ -10,12 +10,6 @@ List devDrives() {
   return (disks);
 }
 
-List driveInfo() {
-  var labels =
-      Process.runSync('bash', ['disks2.sh']).stdout.toString().split('\n');
-  return (labels);
-}
-
 List diskTiles(List drives, List info) {
   List diskwidgets;
   diskwidgets.add(
