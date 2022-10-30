@@ -46,10 +46,10 @@ flutter:
 
   assets:
     - lib/assets/background.png
-    - lib/logo-color.png
+  #  - lib/logo-color.png
     - lib/assets/
     - lib/
-    - lib/recoverylo.png
+  #  - lib/recoverylo.png
     - lib/fonts/SulphurPoint-Bold.ttf
     - lib/fonts/SulphurPoint-Light.ttf
     - lib/fonts/SulphurPoint-Regular.ttf
